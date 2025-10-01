@@ -1,4 +1,10 @@
 package com.avaliaft.repository;
 
-public class ClienteRepository {
+import com.avaliaft.models.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ClienteRepository extends JpaRepository<Cliente,Long> {
+
 }
