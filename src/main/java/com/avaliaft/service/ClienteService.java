@@ -17,4 +17,8 @@ public class ClienteService {
 
     }
 
+    public  Cliente findByNome(String nome){
+        return  clienteRepository.findByNome(nome).orElseThrow(()-> new RuntimeException("Nome não encontrado"));
+    }
+
 }
