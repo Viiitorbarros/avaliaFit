@@ -1,9 +1,6 @@
 package com.avaliaft.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -24,6 +21,9 @@ public class Avaliacao {
     double abodmen;
     double coxa;
 
+    @ManyToOne
+    @JoinColumn (name = "cliente_id")
+    private Cliente cliente;
     public Avaliacao(){
 
     }
@@ -42,6 +42,9 @@ public class Avaliacao {
         this.coxa = coxa;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
 
     public long getId() {
         return id;
@@ -61,6 +64,10 @@ public class Avaliacao {
 
     public double getAltura() {
         return altura;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setAltura(double altura) {

@@ -1,10 +1,9 @@
 package com.avaliaft.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -15,9 +14,12 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String nome;
-    String telefone;
-    Integer idade;
+    private String nome;
+    private String telefone;
+    private Integer idade;
+
+    @OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL )
+    private List<Avaliacao> avaliacoes;
 
     public Cliente(){
 
@@ -30,6 +32,9 @@ public class Cliente {
         this.idade = idade;
     }
 
+    public List<Avaliacao> getAvaliacaos() {
+        return avaliacoes;
+    }
 
     public Long getId() {
         return id;
@@ -41,6 +46,10 @@ public class Cliente {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
+        this.avaliacoes = avaliacaos;
     }
 
     public void setNome(String nome) {
