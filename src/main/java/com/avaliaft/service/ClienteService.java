@@ -10,6 +10,12 @@ public class ClienteService {
     @Autowired
     ClienteRepository clienteRepository;
 
+
+
+    public  Cliente create( Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
+
     public Cliente findById(Long id){
 
         return clienteRepository.findById(id).

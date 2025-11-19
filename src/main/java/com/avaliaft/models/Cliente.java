@@ -17,6 +17,7 @@ public class Cliente {
     private String nome;
     private String telefone;
     private Integer idade;
+    private String sexo;
 
     @OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL )
     private List<Avaliacao> avaliacoes;
@@ -25,11 +26,12 @@ public class Cliente {
 
     }
 
-    public Cliente(Long id, String nome, String telefone, Integer idade) {
+    public Cliente(Long id, String nome, String telefone, Integer idade, String sexo) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.idade = idade;
+        this.sexo = sexo ;
     }
 
     public List<Avaliacao> getAvaliacaos() {
@@ -47,6 +49,8 @@ public class Cliente {
     public String getNome() {
         return nome;
     }
+
+    public String getSexo() {return sexo;}
 
     public void setAvaliacaos(List<Avaliacao> avaliacaos) {
         this.avaliacoes = avaliacaos;
@@ -72,6 +76,7 @@ public class Cliente {
         this.idade = idade;
     }
 
+    public void setSexo(String sexo) {this.sexo = sexo;}
 
     @Override
     public boolean equals(Object o) {
