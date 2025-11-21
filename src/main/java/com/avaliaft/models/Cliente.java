@@ -1,6 +1,5 @@
 package com.avaliaft.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,8 +11,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
+    private Long id;
     private String nome;
     private String telefone;
     private Integer idade;
@@ -42,9 +40,7 @@ public class Cliente {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
     public String getNome() {
         return nome;
@@ -52,8 +48,7 @@ public class Cliente {
 
     public String getSexo() {return sexo;}
 
-    public void setAvaliacaos(List<Avaliacao> avaliacaos) {
-        this.avaliacoes = avaliacaos;
+    public void setAvaliacaos(List<Avaliacao> avaliacaos) {this.avaliacoes = avaliacaos;
     }
 
     public void setNome(String nome) {
