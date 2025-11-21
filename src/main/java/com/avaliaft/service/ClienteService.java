@@ -31,6 +31,25 @@ public class ClienteService {
 
     }
 
+    public Cliente update (Cliente clienteNovosDados, long id){
+        Cliente clienteExistente = findById(id);
+        if(clienteNovosDados.getNome() != null) {
+            clienteExistente.setNome(clienteNovosDados.getNome());
+        }
+        if(clienteNovosDados.getIdade() != null) {
+            clienteExistente.setIdade(clienteNovosDados.getIdade());
+        }
+        if(clienteNovosDados.getSexo() != null) {
+            clienteExistente.setSexo(clienteNovosDados.getSexo());
+        }
+        if(clienteNovosDados.getTelefone() != null) {
+            clienteExistente.setTelefone(clienteNovosDados.getTelefone());
+        }
+
+        return clienteRepository.save(clienteExistente);
+
+    }
+
     public  Cliente findByNome(String nome){
         return  clienteRepository.findByNome(nome).orElseThrow(()-> new RuntimeException("Nome não encontrado"));
     }

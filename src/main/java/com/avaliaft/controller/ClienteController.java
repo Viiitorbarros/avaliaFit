@@ -28,4 +28,9 @@ public class ClienteController {
         clienteService.delete(id);
     }
 
+    @PutMapping("/{id}")
+    public Cliente update(@RequestBody Cliente clienteAtualizado, @PathVariable Long id){
+       return clienteService.update(clienteAtualizado,id);
+    }
+
 }
