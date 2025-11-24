@@ -1,5 +1,6 @@
 package com.avaliaft.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -23,7 +24,9 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn (name = "cliente_id")
+    @JsonIgnore
     private Cliente cliente;
+
     public Avaliacao(){
 
     }

@@ -6,6 +6,8 @@ import com.avaliaft.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -18,9 +20,9 @@ public class ClienteController {
         return clienteService.create(cliente);
     }
 
-    @GetMapping("/{nome}")
-    public Cliente findByNome (@PathVariable String nome ){
-        return  clienteService.findByNome(nome);
+    @GetMapping("/{id}")
+    public Cliente findById(@PathVariable Long id ){
+        return  clienteService.findById(id);
     }
 
     @DeleteMapping("/{id}")
@@ -32,5 +34,12 @@ public class ClienteController {
     public Cliente update(@RequestBody Cliente clienteAtualizado, @PathVariable Long id){
        return clienteService.update(clienteAtualizado,id);
     }
+
+    @GetMapping
+    public List<Cliente> findAll (){
+         return clienteService.findAll();
+    }
+
+
 
 }

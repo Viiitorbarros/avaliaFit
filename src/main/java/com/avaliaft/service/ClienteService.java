@@ -5,6 +5,7 @@ import com.avaliaft.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,24 +14,26 @@ public class ClienteService {
     ClienteRepository clienteRepository;
 
 
-
+    //Cria um novo cliente
     public  Cliente create( Cliente cliente){
         return clienteRepository.save(cliente);
     }
 
-
+    //Deleta um cliente
     public void delete(Long id){
        Optional<Cliente> clienteDeletado =  clienteRepository.findById(id);
         clienteRepository.delete(clienteDeletado.orElseThrow(()-> new RuntimeException("Cliente Nao encontrado")));
 
     }
 
+    //Encontra um cliente baseado no ID
     public Cliente findById(Long id){
         return clienteRepository.findById(id).
                 orElseThrow(()-> new RuntimeException("Cliente nao econtrado"));
 
     }
 
+    // Atualiza um cliente
     public Cliente update (Cliente clienteNovosDados, long id){
         Cliente clienteExistente = findById(id);
         if(clienteNovosDados.getNome() != null) {
@@ -50,8 +53,10 @@ public class ClienteService {
 
     }
 
-    public  Cliente findByNome(String nome){
-        return  clienteRepository.findByNome(nome).orElseThrow(()-> new RuntimeException("Nome não encontrado"));
+
+    public List<Cliente> findAll (){
+
+        return clienteRepository.findAll();
     }
 
 }

@@ -25,6 +25,13 @@ public class AvaliacaoService {
 
     }
 
+    //Criar avaliacao
+    public Avaliacao create(Avaliacao avaliacao){
+        return avaliacaoRepository.save(avaliacao);
+    }
+
+
+
 
 
 
