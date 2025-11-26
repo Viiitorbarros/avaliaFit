@@ -19,6 +19,17 @@ public class AvaliacaoController {
         return novaAvaliacao;
     }
 
+    @DeleteMapping("/{id}")
+    public void delete (@PathVariable Long id){
+        avaliacaoService.delete(id);
+    }
 
+    //UPDATE
+
+    //BUSCAR POR ID
+    @GetMapping("/{id}")
+    public Avaliacao findByID(@PathVariable Long id){
+       return avaliacaoService.findById(id);
+    }
 
 }

@@ -16,6 +16,8 @@ public class AvaliacaoService {
     @Autowired
     AvaliacaoRepository avaliacaoRepository;
 
+    @Autowired
+    ClienteService clienteService;
 
     public Avaliacao findById(Long id){
 
@@ -28,6 +30,15 @@ public class AvaliacaoService {
     //Criar avaliacao
     public Avaliacao create(Avaliacao avaliacao){
         return avaliacaoRepository.save(avaliacao);
+    }
+
+
+    //Deletar avaliacao
+    public void delete(Long id){
+
+      Optional<Avaliacao> avaliacaoExistente = avaliacaoRepository.findById(id);
+      avaliacaoRepository.delete(avaliacaoExistente.orElseThrow(()->new RuntimeException("Avaliação nao encontrada.")));
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.avaliaft.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn (name = "cliente_id")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Cliente cliente;
 
     public Avaliacao(){
