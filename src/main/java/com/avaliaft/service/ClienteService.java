@@ -1,5 +1,6 @@
 package com.avaliaft.service;
 
+import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import com.avaliaft.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class ClienteService {
     public List<Cliente> findAll (){
 
         return clienteRepository.findAll();
+    }
+
+
+    public List<Avaliacao> findAvByCLiente(Long id){
+        Cliente clienteExistente = findById(id);
+        return  clienteExistente.getAvaliacaos();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.avaliaft.controller;
 
 
+import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import com.avaliaft.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class ClienteController {
     public List<Cliente> findAll (){
          return clienteService.findAll();
     }
+    @GetMapping("/{id}/avaliacoes")
+    public List<Avaliacao> findAvaliacaoByCLiente(@PathVariable Long id){
 
+        return clienteService.findAvByCLiente(id);
+    }
 
 
 }
