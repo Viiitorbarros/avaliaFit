@@ -10,18 +10,18 @@ import java.util.Objects;
 public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private Long id;
 
-    double peso;
-    double altura;
+    private Double peso;
+    private Double altura;
 
-    double triceps;
-    double peitoral;
-    double supraIliaca;
-    double axialMedia;
-    double subEscapular;
-    double abodmen;
-    double coxa;
+    private Double triceps;
+    private Double peitoral;
+    private Double supraIliaca;
+    private Double axialMedia;
+    private Double subEscapular;
+    private Double abodmen;
+    private Double coxa;
 
     @ManyToOne
     @JoinColumn (name = "cliente_id")
@@ -33,7 +33,7 @@ public class Avaliacao {
     }
 
 
-    public Avaliacao(long id, double peso, double altura, double triceps, double peitoral, double supraIliaca, double axialMedia, double subEscapular, double abodmen, double coxa) {
+    public Avaliacao(long id, Double peso, Double altura, Double triceps, Double peitoral, Double supraIliaca, Double axialMedia, Double subEscapular, Double abodmen, Double coxa) {
         this.id = id;
         this.peso = peso;
         this.altura = altura;
@@ -58,15 +58,15 @@ public class Avaliacao {
         this.id = id;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
-    public double getAltura() {
+    public Double getAltura() {
         return altura;
     }
 
@@ -74,63 +74,63 @@ public class Avaliacao {
         this.cliente = cliente;
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(Double altura) {
         this.altura = altura;
     }
 
-    public double getTriceps() {
+    public Double getTriceps() {
         return triceps;
     }
 
-    public void setTriceps(double triceps) {
+    public void setTriceps(Double triceps) {
         this.triceps = triceps;
     }
 
-    public double getPeitoral() {
+    public Double getPeitoral() {
         return peitoral;
     }
 
-    public void setPeitoral(double peitoral) {
+    public void setPeitoral(Double peitoral) {
         this.peitoral = peitoral;
     }
 
-    public double getSupraIliaca() {
+    public Double getSupraIliaca() {
         return supraIliaca;
     }
 
-    public void setSupraIliaca(double supraIliaca) {
+    public void setSupraIliaca(Double supraIliaca) {
         this.supraIliaca = supraIliaca;
     }
 
-    public double getAxialMedia() {
+    public Double getAxialMedia() {
         return axialMedia;
     }
 
-    public void setAxialMedia(double axialMedia) {
+    public void setAxialMedia(Double axialMedia) {
         this.axialMedia = axialMedia;
     }
 
-    public double getSubEscapular() {
+    public Double getSubEscapular() {
         return subEscapular;
     }
 
-    public void setSubEscapular(double subEscapular) {
+    public void setSubEscapular(Double subEscapular) {
         this.subEscapular = subEscapular;
     }
 
-    public double getAbodmen() {
+    public Double getAbodmen() {
         return abodmen;
     }
 
-    public void setAbodmen(double abodmen) {
+    public void setAbodmen(Double abodmen) {
         this.abodmen = abodmen;
     }
 
-    public double getCoxa() {
+    public Double getCoxa() {
         return coxa;
     }
 
-    public void setCoxa(double coxa) {
+    public void setCoxa(Double coxa) {
         this.coxa = coxa;
     }
 

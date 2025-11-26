@@ -25,6 +25,10 @@ public class AvaliacaoController {
     }
 
     //UPDATE
+    @PutMapping("/{id}")
+    public Avaliacao update(@RequestBody Avaliacao avaliacaoAtualizada, @PathVariable Long id){
+        return avaliacaoService.update(avaliacaoAtualizada, id);
+    }
 
     //BUSCAR POR ID
     @GetMapping("/{id}")

@@ -5,6 +5,8 @@ import com.avaliaft.models.Avaliacao;
 import com.avaliaft.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.xml.transform.Result;
 import java.util.List;
@@ -42,8 +44,42 @@ public class AvaliacaoService {
     }
 
 
+    public Avaliacao update (Avaliacao avaliacaoAtualizada,Long id){
+        Avaliacao avaliacaoExistente = findById(id);
 
+        //CADA IF REPRESENTA UMA ATUALIZAÇAO PARA CADA ITEM DA AVALIACAO
 
+        if (avaliacaoAtualizada.getAbodmen() != null){
+            avaliacaoExistente.setAbodmen(avaliacaoAtualizada.getAbodmen());
+        }
+        if (avaliacaoAtualizada.getAltura() != null){
+            avaliacaoExistente.setAltura(avaliacaoAtualizada.getAltura());
+        }
+        if (avaliacaoAtualizada.getPeso() != null){
+            avaliacaoExistente.setPeso(avaliacaoAtualizada.getPeso());
+        }
+        if (avaliacaoAtualizada.getTriceps() != null){
+            avaliacaoExistente.setTriceps(avaliacaoAtualizada.getTriceps());
+        }
+        if (avaliacaoAtualizada.getPeitoral()!=null){
+            avaliacaoExistente.setPeitoral(avaliacaoAtualizada.getPeitoral());
+        }
+        if (avaliacaoAtualizada.getSupraIliaca()!=null){
+            avaliacaoExistente.setSupraIliaca(avaliacaoAtualizada.getSupraIliaca());
+        }
+        if (avaliacaoAtualizada.getAxialMedia()!=null){
+            avaliacaoExistente.setAxialMedia(avaliacaoAtualizada.getAxialMedia());
+        }
+        if (avaliacaoAtualizada.getSubEscapular()!=null){
+            avaliacaoExistente.setSubEscapular(avaliacaoAtualizada.getSubEscapular());
+        }
+        if (avaliacaoAtualizada.getCoxa()!= null){
+            avaliacaoExistente.setCoxa(avaliacaoAtualizada.getCoxa());
+        }
+
+        return avaliacaoRepository.save(avaliacaoExistente);
+
+    }
 
 
 
