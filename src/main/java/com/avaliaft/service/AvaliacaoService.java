@@ -82,6 +82,10 @@ public class AvaliacaoService {
     }
 
 
+    public Double calcularImc(){
+
+    }
+
 
 
 

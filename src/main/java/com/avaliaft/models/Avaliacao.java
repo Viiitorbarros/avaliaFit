@@ -1,6 +1,6 @@
 package com.avaliaft.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -22,6 +22,8 @@ public class Avaliacao {
     private Double subEscapular;
     private Double abodmen;
     private Double coxa;
+    private Double imc;
+    private Double percentualGordura;
 
     @ManyToOne
     @JoinColumn (name = "cliente_id")
@@ -134,6 +136,20 @@ public class Avaliacao {
         this.coxa = coxa;
     }
 
+    public Double getImc(){
+        return imc;
+    }
+    public void setImc(Double imc){
+        this.imc = imc;
+    }
+
+    public Double getPercentualGordura() {
+        return percentualGordura;
+    }
+
+    public void setPercentualGordura(Double percentualGordura) {
+        this.percentualGordura = percentualGordura;
+    }
 
     @Override
     public boolean equals(Object o) {
