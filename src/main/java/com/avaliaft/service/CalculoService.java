@@ -4,7 +4,6 @@ import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 @Service
@@ -24,7 +23,7 @@ public class CalculoService {
 
     public Double calcularPercentualGordura(Avaliacao avaliacao){
 
-        Double somaDasDobras = avaliacao.getAbodmen() + avaliacao.getCoxa() + avaliacao.getAxialMedia() +
+        Double somaDasDobras = avaliacao.getAbdomen() + avaliacao.getCoxa() + avaliacao.getAxialMedia() +
                 avaliacao.getSubEscapular() + avaliacao.getPeitoral() +  avaliacao.getTriceps() + avaliacao.getSupraIliaca();
 
         Double densidadeCorporal;

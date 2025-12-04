@@ -59,8 +59,8 @@ public class AvaliacaoService {
 
         //CADA IF REPRESENTA UMA ATUALIZAÇAO PARA CADA ITEM DA AVALIACAO
 
-        if (avaliacaoAtualizada.getAbodmen() != null){
-            avaliacaoExistente.setAbodmen(avaliacaoAtualizada.getAbodmen());
+        if (avaliacaoAtualizada.getAbdomen() != null){
+            avaliacaoExistente.setAbdomen(avaliacaoAtualizada.getAbdomen());
         }
         if (avaliacaoAtualizada.getAltura() != null){
             avaliacaoExistente.setAltura(avaliacaoAtualizada.getAltura());

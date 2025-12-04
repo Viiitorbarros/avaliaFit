@@ -20,7 +20,7 @@ public class Avaliacao {
     private Double supraIliaca;
     private Double axialMedia;
     private Double subEscapular;
-    private Double abodmen;
+    private Double abdomen;
     private Double coxa;
     private Double imc;
     private Double percentualGordura;
@@ -44,7 +44,7 @@ public class Avaliacao {
         this.supraIliaca = supraIliaca;
         this.axialMedia = axialMedia;
         this.subEscapular = subEscapular;
-        this.abodmen = abodmen;
+        this.abdomen = abodmen;
         this.coxa = coxa;
     }
 
@@ -120,12 +120,12 @@ public class Avaliacao {
         this.subEscapular = subEscapular;
     }
 
-    public Double getAbodmen() {
-        return abodmen;
+    public Double getAbdomen() {
+        return abdomen;
     }
 
-    public void setAbodmen(Double abodmen) {
-        this.abodmen = abodmen;
+    public void setAbdomen(Double abodmen) {
+        this.abdomen = abodmen;
     }
 
     public Double getCoxa() {
