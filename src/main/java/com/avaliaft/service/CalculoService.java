@@ -4,19 +4,25 @@ import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 @Service
 public class CalculoService {
 
+   DecimalFormat decimalFormat = new DecimalFormat("#,##");
 
     public Double calcularImc(Double peso, Double altura){
 
         Double imc = peso / (altura * altura);
 
+        imc = Double.valueOf(decimalFormat.format(imc));
+
         return imc;
     }
 
 
-    public Double calcularDensidadeCorporal (Avaliacao avaliacao){
+    public Double calcularPercentualGordura(Avaliacao avaliacao){
 
         Double somaDasDobras = avaliacao.getAbodmen() + avaliacao.getCoxa() + avaliacao.getAxialMedia() +
                 avaliacao.getSubEscapular() + avaliacao.getPeitoral() +  avaliacao.getTriceps() + avaliacao.getSupraIliaca();
@@ -26,7 +32,7 @@ public class CalculoService {
         Cliente cliente = avaliacao.getCliente();
 
         ///  Calculo caso seja Masculino
-        if (cliente.getSexo() == "M"){
+        if (cliente.getSexo().equals("masculino")){
             densidadeCorporal = 1.112 - (0.00043499 * somaDasDobras) + (0.00000055  * (somaDasDobras * somaDasDobras)) -
                     (0.00028826 * cliente.getIdade());
 
@@ -39,7 +45,13 @@ public class CalculoService {
 
         }
 
+        ///  Converter PG
+
+
         Double percentualGordura = ((4.95 / densidadeCorporal) - 4.50 ) * 100;
+        percentualGordura = Double.valueOf(decimalFormat.format(percentualGordura));
+
+
 
         return percentualGordura;
 

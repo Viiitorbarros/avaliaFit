@@ -2,14 +2,11 @@ package com.avaliaft.service;
 
 
 import com.avaliaft.models.Avaliacao;
+import com.avaliaft.models.Cliente;
 import com.avaliaft.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.xml.transform.Result;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +14,9 @@ public class AvaliacaoService {
 
     @Autowired
     AvaliacaoRepository avaliacaoRepository;
+
+    @Autowired
+    CalculoService calculoService;
 
     @Autowired
     ClienteService clienteService;
@@ -31,6 +31,16 @@ public class AvaliacaoService {
 
     //Criar avaliacao
     public Avaliacao create(Avaliacao avaliacao){
+
+
+        Cliente cliente = clienteService.findById(avaliacao.getCliente().getId());
+        avaliacao.setCliente(cliente);
+
+
+        avaliacao.setImc(calculoService.calcularImc(avaliacao.getPeso(),avaliacao.getAltura()));
+        avaliacao.setPercentualGordura(calculoService.calcularPercentualGordura(avaliacao));
+
+
         return avaliacaoRepository.save(avaliacao);
     }
 
@@ -80,13 +90,6 @@ public class AvaliacaoService {
         return avaliacaoRepository.save(avaliacaoExistente);
 
     }
-
-
-    public Double calcularImc(){
-
-    }
-
-
 
 
 
