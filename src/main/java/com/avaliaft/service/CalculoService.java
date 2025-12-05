@@ -4,20 +4,22 @@ import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 
 @Service
 public class CalculoService {
 
-   DecimalFormat decimalFormat = new DecimalFormat("#,##");
+
 
     public Double calcularImc(Double peso, Double altura){
 
         Double imc = peso / (altura * altura);
+        BigDecimal imcArredondado = BigDecimal.valueOf(imc);
 
-        imc = Double.valueOf(decimalFormat.format(imc));
 
-        return imc;
+        return arredondar(imc);
     }
 
 
@@ -31,7 +33,7 @@ public class CalculoService {
         Cliente cliente = avaliacao.getCliente();
 
         ///  Calculo caso seja Masculino
-        if (cliente.getSexo().equals("masculino")){
+        if ("masculino".equalsIgnoreCase(cliente.getSexo())){
             densidadeCorporal = 1.112 - (0.00043499 * somaDasDobras) + (0.00000055  * (somaDasDobras * somaDasDobras)) -
                     (0.00028826 * cliente.getIdade());
 
@@ -45,17 +47,20 @@ public class CalculoService {
         }
 
         ///  Converter PG
-
-
         Double percentualGordura = ((4.95 / densidadeCorporal) - 4.50 ) * 100;
-        percentualGordura = Double.valueOf(decimalFormat.format(percentualGordura));
 
-
-
-        return percentualGordura;
+        return arredondar(percentualGordura);
 
     }
 
+
+    private Double arredondar(Double valor) {
+        if (valor == null || valor.isNaN() || valor.isInfinite()) return 0.0;
+
+        BigDecimal bd = new BigDecimal(valor).setScale(2, RoundingMode.HALF_UP);
+
+        return bd.doubleValue();
+    }
 
 
 }

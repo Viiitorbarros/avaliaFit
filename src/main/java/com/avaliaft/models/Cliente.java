@@ -1,6 +1,7 @@
 package com.avaliaft.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +15,9 @@ public class Cliente {
     private Long id;
     private String nome;
     private String telefone;
+    @NotNull
     private Integer idade;
+    @NotNull
     private String sexo;
 
     @OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL )
