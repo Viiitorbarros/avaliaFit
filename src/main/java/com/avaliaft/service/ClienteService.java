@@ -5,6 +5,7 @@ import com.avaliaft.models.Cliente;
 import com.avaliaft.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,9 +62,10 @@ public class ClienteService {
     }
 
 
+    @Transactional
     public List<Avaliacao> findAvByCLiente(Long id){
         Cliente clienteExistente = findById(id);
-        return  clienteExistente.getAvaliacaos();
+        return  clienteExistente.getAvaliacoes();
     }
 
 }

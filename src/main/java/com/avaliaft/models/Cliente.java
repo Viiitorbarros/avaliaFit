@@ -35,7 +35,7 @@ public class Cliente {
         this.sexo = sexo ;
     }
 
-    public List<Avaliacao> getAvaliacaos() {
+    public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 

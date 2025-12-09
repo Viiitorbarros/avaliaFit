@@ -16,8 +16,8 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @PostMapping("/cliente")
-    public Cliente crate (@RequestBody Cliente cliente){
+    @PostMapping
+    public Cliente create (@RequestBody Cliente cliente){
         return clienteService.create(cliente);
     }
 
