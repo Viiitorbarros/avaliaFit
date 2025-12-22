@@ -13,7 +13,7 @@ public class AvaliacaoController {
     @Autowired
     AvaliacaoService avaliacaoService;
     
-    @PostMapping("/{avaliacao}")
+    @PostMapping()
     public Avaliacao create(@RequestBody Avaliacao avaliacao){
         Avaliacao novaAvaliacao = avaliacaoService.create(avaliacao);
         return novaAvaliacao;
