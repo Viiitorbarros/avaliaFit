@@ -87,6 +87,8 @@ public class AvaliacaoService {
             avaliacaoExistente.setCoxa(avaliacaoAtualizada.getCoxa());
         }
 
+
+
         return avaliacaoRepository.save(avaliacaoExistente);
 
     }
