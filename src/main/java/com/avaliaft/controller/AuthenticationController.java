@@ -1,12 +1,14 @@
 package com.avaliaft.controller;
 
-
 import com.avaliaft.dtos.AuthenticationDTO;
+import com.avaliaft.dtos.RegisterDTO;
+import com.avaliaft.models.Usuario;
 import com.avaliaft.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,9 +32,21 @@ public class AuthenticationController {
         var auth = authenticationManager.authenticate(usernamePassord);
         return  ResponseEntity.ok().build();
     }
+    @PostMapping("/register")
+    public ResponseEntity register (@RequestBody RegisterDTO data){
 
+        if (usuarioRepository.findByLogin(data.login()) != null) {
 
+            return ResponseEntity.badRequest().build();
 
+        }else {
+            String encryptedPassoword = new BCryptPasswordEncoder().encode(data.password());
+            Usuario novousuario = new Usuario(data.login(), encryptedPassoword);
+            usuarioRepository.save(novousuario);
+            return ResponseEntity.ok().build();
+        }
+
+    }
 
 
 
