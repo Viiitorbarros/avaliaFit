@@ -1,9 +1,11 @@
 package com.avaliaft.controller;
 
 import com.avaliaft.dtos.AuthenticationDTO;
+import com.avaliaft.dtos.DadosTokenJWT;
 import com.avaliaft.dtos.RegisterDTO;
 import com.avaliaft.models.Usuario;
 import com.avaliaft.repository.UsuarioRepository;
+import com.avaliaft.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,13 +27,20 @@ public class AuthenticationController {
     UsuarioRepository usuarioRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationDTO login){
         var usernamePassord =  new UsernamePasswordAuthenticationToken(login.login(), login.password());
         var auth = authenticationManager.authenticate(usernamePassord);
-        return  ResponseEntity.ok().build();
+        var usuario = (Usuario) auth.getPrincipal();
+        var token = tokenService.gerarToken(usuario);
+
+
+        return  ResponseEntity.ok(new DadosTokenJWT(token));
     }
+
     @PostMapping("/register")
     public ResponseEntity register (@RequestBody RegisterDTO data){
 
