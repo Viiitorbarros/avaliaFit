@@ -26,8 +26,6 @@ public class AuthenticationController {
     @Autowired
     UsuarioRepository usuarioRepository;
     @Autowired
-    PasswordEncoder passwordEncoder;
-    @Autowired
     TokenService tokenService;
 
     @PostMapping("/login")

@@ -12,14 +12,13 @@ import java.time.Instant;
 
 @Service
 public class TokenService {
-    @Value("${api.security.token.secret}")
+    @Value("${api.security.token.secret}}")
     String secret;
     @Value("${api.security.token.issuer}")
     String issuer;
 
     public String gerarToken (Usuario usuario){
        Algorithm algorithm = Algorithm.HMAC256(secret);
-
 
        return JWT.create()
                .withIssuer(issuer)
@@ -29,7 +28,7 @@ public class TokenService {
     }
 
 
-    public String validarToken(String tokeJWT){
+    public String validarToken(String tokenJWT){
 
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -37,7 +36,7 @@ public class TokenService {
             return JWT.require(algorithm)
                     .withIssuer(issuer)
                     .build()
-                    .verify(tokeJWT)
+                    .verify(tokenJWT)
                     .getSubject();
         }catch (JWTVerificationException e){
             return null;
