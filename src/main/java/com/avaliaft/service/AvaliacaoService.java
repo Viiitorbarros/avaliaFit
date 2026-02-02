@@ -88,6 +88,14 @@ public class AvaliacaoService {
         }
 
 
+        Double novoImc = calculoService.calcularImc(avaliacaoExistente.getPeso(), avaliacaoExistente.getAltura());
+        avaliacaoExistente.setImc(novoImc);
+
+
+        double novoPercentual = calculoService.calcularPercentualGordura(avaliacaoExistente);
+        avaliacaoExistente.setPercentualGordura(novoPercentual);
+
+
 
         return avaliacaoRepository.save(avaliacaoExistente);
 
