@@ -3,6 +3,7 @@ package com.avaliaft.service;
 import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import com.avaliaft.repository.ClienteRepository;
+import com.avaliaft.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ public class ClienteService {
     //Encontra um cliente baseado no ID
     public Cliente findById(Long id){
         return clienteRepository.findById(id).
-                orElseThrow(()-> new RuntimeException("Cliente nao econtrado"));
+                orElseThrow(()-> new ResourceNotFoundException("Cliente nao econtrado"));
 
     }
 

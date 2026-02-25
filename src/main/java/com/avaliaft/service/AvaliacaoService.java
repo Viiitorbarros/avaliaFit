@@ -4,6 +4,7 @@ package com.avaliaft.service;
 import com.avaliaft.models.Avaliacao;
 import com.avaliaft.models.Cliente;
 import com.avaliaft.repository.AvaliacaoRepository;
+import com.avaliaft.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class AvaliacaoService {
     public Avaliacao findById(Long id){
 
        return avaliacaoRepository.findById(id)
-               .orElseThrow(()-> new RuntimeException("\"Avaliação não encontrada com id: \" + id"));
+               .orElseThrow(()-> new ResourceNotFoundException("\"Avaliação não encontrada com id: \" + id"));
 
 
     }
