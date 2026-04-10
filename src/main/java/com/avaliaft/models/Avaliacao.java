@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity(name = "avaliacao")
@@ -16,6 +18,7 @@ public class Avaliacao {
     private Double peso;
     @NotNull
     private Double altura;
+    private LocalDateTime data = LocalDateTime.now() ;
 
     private Double triceps;
     private Double peitoral;
@@ -48,6 +51,10 @@ public class Avaliacao {
         this.subEscapular = subEscapular;
         this.abdomen = abodmen;
         this.coxa = coxa;
+    }
+
+    public LocalDateTime getData() {
+        return data;
     }
 
     public Cliente getCliente() {
