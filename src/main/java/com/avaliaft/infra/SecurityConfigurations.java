@@ -28,22 +28,20 @@ public class SecurityConfigurations {
     //"porteiro do sistema" ele Define QUEM pode acessar O QUÊ
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
-                .csrf(crsf -> crsf.disable())
-
+                .csrf(csrf -> csrf.disable())
+                // Mantém sua configuração de CORS que já está correta
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        // LIBERAÇÃO PARA AVALIAÇÕES: Garante que o usuário logado acesse tudo de /avaliacoes
+                        .requestMatchers("/avaliacoes/**").authenticated()
                         .anyRequest().authenticated()
-                );
-
+                )
+                // O filtro de segurança deve vir DEPOIS do CORS para não barrar o pre-flight
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
